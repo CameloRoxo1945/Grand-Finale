@@ -1,286 +1,464 @@
-// Loading Screen Animation
-document.addEventListener("DOMContentLoaded", () => {
-  const loadingScreen = document.getElementById("loading-screen")
-  const mainContent = document.getElementById("main-content")
-
-  // Simular carregamento por 3 segundos
-  setTimeout(() => {
-    loadingScreen.style.opacity = "0"
-    loadingScreen.style.transition = "opacity 0.5s ease-out"
-
-    setTimeout(() => {
-      loadingScreen.style.display = "none"
-      mainContent.classList.remove("hidden")
-
-      // Iniciar animações da página principal
-      initializeAnimations()
-    }, 500)
-  }, 3000)
-})
-
-// Inicializar animações e funcionalidades
-function initializeAnimations() {
-  // Smooth scrolling para links de navegação
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        })
-      }
-    })
-  })
-
-  // Intersection Observer para animações de scroll
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible")
-      }
-    })
-  }, observerOptions)
-
-  // Observar elementos para animação
-  const animatedElements = document.querySelectorAll(".about-card, .event-card, .feature")
-  animatedElements.forEach((el) => {
-    el.classList.add("fade-in-up")
-    observer.observe(el)
-  })
-
-  // Animação especial para cards
-  const cards = document.querySelectorAll(".registration-card")
-  cards.forEach((card) => {
-    card.classList.add("scale-in")
-    observer.observe(card)
-  })
-
-  // Header scroll effect
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector(".header")
-    if (window.scrollY > 100) {
-      header.style.background = "rgba(0, 0, 0, 0.95)"
-    } else {
-      header.style.background = "rgba(0, 0, 0, 0.8)"
-    }
-  })
-
-  // Mobile menu toggle
-  const mobileMenuToggle = document.querySelector(".mobile-menu-toggle")
-  const nav = document.querySelector(".nav")
-
-  if (mobileMenuToggle && nav) {
-    mobileMenuToggle.addEventListener("click", () => {
-      nav.classList.toggle("active")
-    })
-  }
-
-  // Botões de ação
-  const inscricaoButtons = document.querySelectorAll(".btn-primary, .btn-form")
-  inscricaoButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      if (button.textContent.includes("Formulário") || button.textContent.includes("Vaga")) {
-        e.preventDefault()
-        // Aqui você pode adicionar o link real do formulário
-        alert("Redirecionando para o formulário de inscrição...")
-        // window.open('https://forms.google.com/seu-formulario', '_blank');
-      }
-    })
-  })
-
-  // Animação de contadores (se necessário)
-  function animateCounter(element, target, duration = 2000) {
-    let start = 0
-    const increment = target / (duration / 16)
-
-    function updateCounter() {
-      start += increment
-      if (start < target) {
-        element.textContent = Math.floor(start)
-        requestAnimationFrame(updateCounter)
-      } else {
-        element.textContent = target
-      }
-    }
-
-    updateCounter()
-  }
-
-  // Ativar contadores quando visíveis
-  const statsObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const counters = entry.target.querySelectorAll(".stat-number")
-          counters.forEach((counter) => {
-            const text = counter.textContent
-            const number = Number.parseInt(text.replace(/\D/g, ""))
-            if (number && !counter.classList.contains("animated")) {
-              counter.classList.add("animated")
-              counter.textContent = "0" + text.replace(/\d/g, "")
-              animateCounter(counter, number)
-            }
-          })
-        }
-      })
-    },
-    { threshold: 0.5 },
-  )
-
-  const statsSection = document.querySelector(".stats-grid")
-  if (statsSection) {
-    statsObserver.observe(statsSection)
-  }
-
-  // Parallax effect para hero background
-  window.addEventListener("scroll", () => {
-    const scrolled = window.pageYOffset
-    const heroBackground = document.querySelector(".hero-bg")
-    if (heroBackground) {
-      heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`
-    }
-  })
-
-  // Adicionar efeito de hover nos cards
-  const hoverCards = document.querySelectorAll(".about-card, .event-card")
-  hoverCards.forEach((card) => {
-    card.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-8px) scale(1.02)"
-    })
-
-    card.addEventListener("mouseleave", function () {
-      this.style.transform = "translateY(0) scale(1)"
-    })
-  })
-
-  // Efeito de typing para o título (opcional)
-  function typeWriter(element, text, speed = 100) {
-    let i = 0
-    element.textContent = ""
-
-    function type() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i)
-        i++
-        setTimeout(type, speed)
-      }
-    }
-
-    type()
-  }
-
-  // Aplicar efeito de typing no título principal (descomente se desejar)
-  // const heroTitle = document.querySelector('.hero-title');
-  // if (heroTitle) {
-  //     typeWriter(heroTitle, 'SETEC', 200);
-  // }
-
-  console.log("🚀 SETEC 2025 - Site carregado com sucesso!")
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// Adicionar estilos CSS para mobile menu via JavaScript
-const mobileMenuStyles = `
-    @media (max-width: 768px) {
-        .nav.active {
-            display: flex;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            flex-direction: column;
-            padding: 1rem;
-            border-top: 1px solid rgba(75, 85, 99, 0.3);
-            backdrop-filter: blur(12px);
-        }
-        
-        .nav.active a {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(75, 85, 99, 0.2);
-            text-align: center;
-        }
-        
-        .nav.active a:last-child {
-            border-bottom: none;
-        }
-        
-        .nav.active .btn-primary {
-            margin-top: 1rem;
-            align-self: center;
-        }
-    }
-`
-
-// Adicionar estilos ao head
-const styleSheet = document.createElement("style")
-styleSheet.textContent = mobileMenuStyles
-document.head.appendChild(styleSheet)
-
-// Função para detectar dispositivo móvel
-function isMobile() {
-  return window.innerWidth <= 768
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #000;
+  overflow-x: hidden;
 }
 
-// Ajustar comportamento baseado no dispositivo
-window.addEventListener("resize", () => {
-  const nav = document.querySelector(".nav")
-  if (!isMobile() && nav) {
-    nav.classList.remove("active")
-  }
-})
-
-// Preloader adicional para imagens (opcional)
-function preloadImages() {
-  const images = [
-    // Adicione aqui URLs de imagens que precisam ser pré-carregadas
-  ]
-
-  images.forEach((src) => {
-    const img = new Image()
-    img.src = src
-  })
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
-// Executar preload quando necessário
-// preloadImages();
+.hidden {
+  display: none !important;
+}
 
-// Easter egg - Konami Code
-let konamiCode = []
-const konamiSequence = [
-  "ArrowUp",
-  "ArrowUp",
-  "ArrowDown",
-  "ArrowDown",
-  "ArrowLeft",
-  "ArrowRight",
-  "ArrowLeft",
-  "ArrowRight",
-  "KeyB",
-  "KeyA",
-]
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #1e40af 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-document.addEventListener("keydown", (e) => {
-  konamiCode.push(e.code)
+.loading-content {
+  text-align: center;
+}
 
-  if (konamiCode.length > konamiSequence.length) {
-    konamiCode.shift()
-  }
+.loading-logo {
+  margin-bottom: 2rem;
+  animation: logoAnimation 1s ease-out;
+}
 
-  if (konamiCode.join(",") === konamiSequence.join(",")) {
-    // Easter egg ativado!
-    document.body.style.filter = "hue-rotate(180deg)"
-    setTimeout(() => {
-      document.body.style.filter = "none"
-    }, 3000)
+.logo-circle {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
 
-    console.log("🎉 Easter egg ativado! Parabéns por encontrar o código Konami!")
-    konamiCode = []
-  }
-})
+.logo-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.loading-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.loading-subtitle {
+  font-size: 1.5rem;
+  color: #bfdbfe;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.loading-bar-container {
+  width: 256px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out 1s both;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
+  border-radius: 9999px;
+  animation: loadingProgress 2s ease-in-out 1s both;
+  transform: translateX(-100%);
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  animation: fadeInUp 0.8s ease-out 1.5s both;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: dotPulse 1s infinite;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-logo {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.logo-text-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.college-name {
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.event-name {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: white;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #06b6d4;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  background: #0891b2;
+  transform: translateY(-2px);
+}
+
+.btn-primary.large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-primary.extra-large {
+  padding: 1.5rem 3rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: #000;
+}
+
+.btn-outline.large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-form {
+  background: white;
+  color: #000;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-form:hover {
+  background: #f3f4f6;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #7c3aed 0%, #374151 50%, #000 100%);
+}
+
+.hero-bg::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  width: 256px;
+  height: 256px;
+  background: #7c3aed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+}
+
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  bottom: 80px;
+  right: 80px;
+  width: 384px;
+  height: 384px;
+  background: #3b82f6;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 1024px;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(147, 51, 234, 0.3);
+  color: #c4b5fd;
+  border: 1px solid rgba(147, 51, 234, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+.hero-title {
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.hero-subtitle h2 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: #d1d5db;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle h3 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: bold;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.hero-description {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #d1d5db;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 40px;
+  border: 2px solid #9ca3af;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.scroll-wheel {
+  width: 4px;
+  height: 12px;
+  background: #9ca3af;
+  border-radius: 2px;
+}
+
+/* About Section */
+.about-section {
+  padding: 5rem 0;
+  background: #000;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: bold;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.section-header p {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-card:hover {
+  border-color: rgba(147, 51, 234, 0.5);
+  transform: translateY(-4px);
+}
+
+.about-card.mission:hover {
+  border-color: rgba(147, 51, 234, 0.5);
+}
+
+.about-card.ai:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.about-card.development:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.about-card.innovation:hover {
+  border-color: rgba
