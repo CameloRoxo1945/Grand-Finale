@@ -5,80 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SETEC 2025 - Semana de Tecnologia</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <!-- Logo animado -->
-            <div class="loading-logo">
-                <div class="logo-circle">
-                    <span class="logo-text">S</span>
-                </div>
-            </div>
-
-            <!-- Texto animado -->
-            <h1 class="loading-title">SETEC</h1>
-            <p class="loading-subtitle">Semana de Tecnologia</p>
-
-            <!-- Barra de carregamento -->
-            <div class="loading-bar-container">
-                <div class="loading-bar">
-                    <div class="loading-progress"></div>
-                </div>
-            </div>
-
-            <!-- Pontos animados -->
-            <div class="loading-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-        </div>
+     Matrix Background 
+    <div class="matrix-container">
+        <canvas id="matrixCanvas"></canvas>
     </div>
 
-    <!-- Main Content -->
-    <div id="main-content" class="main-content hidden">
-        <!-- Header -->
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo-section">
-                        <div class="header-logo">
-                            <span>CB</span>
-                        </div>
-                        <div class="logo-text-section">
-                            <div class="college-name">Colégio Estadual Barbosa Ferraz</div>
-                            <div class="event-name">SETEC 2025</div>
-                        </div>
-                    </div>
-                    <nav class="nav">
-                        <a href="#sobre">Sobre</a>
-                        <a href="#programacao">Programação</a>
-                        <a href="#inscricao">Inscrição</a>
-                        <button class="btn-primary">Inscreva-se</button>
-                    </nav>
-                    <div class="mobile-menu-toggle">
-                        <i class="fas fa-bars"></i>
+     Background Effects 
+    <div class="background-effects">
+        <div class="blur-effect blur-1"></div>
+        <div class="blur-effect blur-2"></div>
+        <div class="blur-effect blur-3"></div>
+    </div>
+
+     Header 
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">CB</div>
+                    <div class="logo-text">
+                        <span class="school-name">Colégio Barbosa Ferraz</span>
+                        <span class="event-subtitle">Semana de Tecnologia</span>
                     </div>
                 </div>
+                <nav class="nav">
+                    <a href="#sobre">Sobre</a>
+                    <a href="#programacao">Programação</a>
+                    <a href="#inscricoes">Inscrições</a>
+                </nav>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="container">
-                <div class="hero-content">
-                    <div class="badge">📅 04-06 Dezembro 2025 • Gratuito</div>
-                    
-                    <h1 class="hero-title">SETEC</h1>
-                    
-                    <div class="hero-subtitle">
-                        <h2>Semana da Tecnologia</h2>
-                        <h3>Inteligência Artificial</h3>
-                    </div>
+     Main Content 
+    <main class="main-content">
+         Hero Section with Matrix Effect 
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="date-badge">
+                    📅 04, 05 e 06 de Dezembro 2025
+                </div>
+
+                <h1 class="main-title">
+                    <span class="setec-text">SETEC</span>
+                    <span class="year-text">2025</span>
+                </h1>
+
+                <h2 class="subtitle">Semana de Tecnologia</h2>
+
+                <p class="description">
+                    Explore o futuro da tecnologia com palestras, workshops e demonstrações sobre Inteligência Artificial,
+                    Desenvolvimento de Software e as mais recentes inovações tecnológicas.
+                </p>
+
+                <div class="buttons">
+                    <button class="btn btn-primary">Inscreva-se Agora</button>
+                    <button class="btn btn-secondary">Ver Programação</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
                     <p class="hero-description">
                         O maior evento de IA e tecnologia do Colégio Barbosa Ferraz.<br>
