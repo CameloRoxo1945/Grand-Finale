@@ -23,6 +23,23 @@ body {
   display: none !important;
 }
 
+/* Matrix animation background styles */
+.matrix-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#matrixCanvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
 /* Loading Screen */
 .loading-screen {
   position: fixed;
@@ -281,32 +298,60 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #7c3aed 0%, #374151 50%, #000 100%);
+  z-index: 0;
 }
 
-.hero-bg::before {
-  content: "";
+/* Background effects for floating blur circles */
+.background-effects {
   position: absolute;
-  top: 80px;
-  left: 80px;
-  width: 256px;
-  height: 256px;
-  background: #7c3aed;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.2;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.hero-bg::after {
-  content: "";
+.blur-circle {
   position: absolute;
-  bottom: 80px;
-  right: 80px;
-  width: 384px;
-  height: 384px;
-  background: #3b82f6;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.2;
+  opacity: 0.15;
+}
+
+.blur-1 {
+  top: 10%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  animation: float 6s ease-in-out infinite;
+}
+
+.blur-2 {
+  bottom: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.blur-3 {
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, #ec4899, #7c3aed);
+  animation: float 7s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
 }
 
 .hero-content {
@@ -345,7 +390,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
-img{
+img {
   width: 600px;
   height: 600px;
 }
@@ -430,7 +475,7 @@ img{
 
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   max-width: 1536px;
   margin: 0 auto;
@@ -449,7 +494,7 @@ img{
 }
 
 .about-card:hover {
-  border-color: rgba(147, 51, 234, 0.5);
+  border-color: rgba(75, 85, 99, 0.6);
   transform: translateY(-4px);
 }
 
@@ -574,6 +619,20 @@ img{
   padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
+}
+
+.event-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #1f2937;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .event-content {
