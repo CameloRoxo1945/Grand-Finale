@@ -363,6 +363,9 @@ body {
   position: relative;
   z-index: 10;
   animation: fadeInUp 1s ease-out 0.5s both;
+  /* Adjusted padding to push text more to the left */
+  padding-left: 0;
+  padding-right: 2rem;
 }
 
 .hero-text {
@@ -370,7 +373,9 @@ body {
   text-align: left;
   position: relative;
   z-index: 10;
-  max-width: 600px;
+  /* Reduced max-width and adjusted positioning for better left alignment */
+  max-width: 550px;
+  padding-right: 2rem;
 }
 
 .hero-image {
@@ -384,64 +389,11 @@ body {
 }
 
 .robot-image {
-  width: 550px;
-  height: 550px;
+  /* Increased robot size to better match prototype */
+  width: 650px;
+  height: 650px;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
-}
-
-.badge {
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  color: white;
-  font-size: 0.875rem;
-  margin-bottom: 2rem;
-}
-
-.hero-title {
-  font-size: clamp(4rem, 12vw, 10rem);
-  font-weight: bold;
-  color: white;
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-.hero-subtitle h2 {
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-weight: 600;
-  color: white;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-}
-
-.hero-subtitle h3 {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: bold;
-  background: linear-gradient(90deg, #06b6d4, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 2rem;
-  line-height: 1.1;
-}
-
-.hero-description {
-  font-size: 1.25rem;
-  color: #d1d5db;
-  margin-bottom: 3rem;
-  line-height: 1.6;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-start;
-  flex-wrap: wrap;
 }
 
 /* About Section */
@@ -962,8 +914,9 @@ body {
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .robot-image {
-    width: 450px;
-    height: 450px;
+    /* Adjusted tablet size proportionally */
+    width: 500px;
+    height: 500px;
   }
 
   .hero-content {
