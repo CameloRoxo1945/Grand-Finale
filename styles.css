@@ -355,7 +355,10 @@ body {
 }
 
 .hero-content {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
   max-width: 1200px;
   position: relative;
   z-index: 10;
@@ -363,23 +366,22 @@ body {
 }
 
 .hero-text {
+  flex: 1;
+  text-align: left;
   position: relative;
   z-index: 10;
 }
 
 .hero-image {
-  position: absolute;
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%);
-  z-index: 3;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
   pointer-events: none;
-  opacity: 0.4;
 }
 
 .robot-image {
-  width: 500px;
-  height: 500px;
+  width: 450px;
+  height: 450px;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
 }
@@ -431,48 +433,8 @@ body {
 .hero-buttons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.scroll-mouse {
-  width: 24px;
-  height: 40px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  position: relative;
-  animation: bounce 2s infinite;
-}
-
-.scroll-wheel {
-  width: 4px;
-  height: 8px;
-  background: white;
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 2s infinite;
-}
-
-@keyframes scrollWheel {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(16px);
-  }
 }
 
 /* About Section */
@@ -917,13 +879,22 @@ body {
     display: block;
   }
 
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
   .hero-image {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    opacity: 0.3;
-    margin-bottom: 2rem;
+    order: -1;
   }
 
   .robot-image {
@@ -983,8 +954,8 @@ body {
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .robot-image {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
   }
 
   .hero-content {
