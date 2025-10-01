@@ -1,353 +1,959 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SETEC 2025 - Semana de Tecnologia</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-        <div class="loading-content">
-            <!-- Logo animado -->
-            <div class="loading-logo">
-                <div class="logo-circle">
-                    <span class="logo-text">S</span>
-                </div>
-            </div>
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-            <!-- Texto animado -->
-            <h1 class="loading-title">SETEC</h1>
-            <p class="loading-subtitle">Semana de Tecnologia</p>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #000;
+  overflow-x: hidden;
+}
 
-            <!-- Barra de carregamento -->
-            <div class="loading-bar-container">
-                <div class="loading-bar">
-                    <div class="loading-progress"></div>
-                </div>
-            </div>
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-            <!-- Pontos animados -->
-            <div class="loading-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-        </div>
-    </div>
+.hidden {
+  display: none !important;
+}
 
-    <!-- Main Content -->
-    <div id="main-content" class="main-content hidden">
-        <!-- Header -->
-        <header class="header">
-            <div class="container">
-                <div class="header-content">
-                    <div class="logo-section">
-                        <div class="header-logo">
-                            <span>CB</span>
-                        </div>
-                        <div class="logo-text-section">
-                            <div class="college-name">Colégio Estadual Barbosa Ferraz</div>
-                            <div class="event-name">SETEC 2025</div>
-                        </div>
-                    </div>
-                    <nav class="nav">
-                        <a href="#sobre">Sobre</a>
-                        <a href="#jornada">Setecs passadas</a>
-                        <a href="#inscricao">Inscrição</a>
-                        <a href="https://formulario-setec.vercel.app/" target="_blank">
-                            <button class="btn-primary">Inscreva-se</button>
-                        </a>
-                    </nav>
-                    <div class="mobile-menu-toggle">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </div>
-            </div>
-        </header>
+/* Matrix animation background styles */
+.matrix-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <!-- Added Matrix background animation canvas -->
-            <div class="matrix-background">
-                <canvas id="matrixCanvas"></canvas>
-            </div>
-            
-            <!-- Added floating blur circles for background effect -->
-            <div class="background-effects">
-                <div class="blur-circle blur-1"></div>
-                <div class="blur-circle blur-2"></div>
-                <div class="blur-circle blur-3"></div>
-            </div>
-            
-            <div class="hero-bg"></div>
-            <div class="container">
-                <div class="hero-content">
-                    <!-- Restructured hero content to have text on left and robot image on right -->
-                    <div class="hero-text">
-                        <div class="badge">📅 04-06 Novembro 2025 • Gratuito</div>
-                        
-                        <h1 class="hero-title">SETEC</h1>
-                        
-                        <div class="hero-subtitle">
-                            <h2>Semana da Tecnologia</h2>
-                            <h3>Inteligência Artificial</h3>
-                        </div>
+#matrixCanvas {
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
 
-                        <p class="hero-description">
-                            O maior evento de IA e tecnologia do Colégio Barbosa Ferraz.<br>
-                            Evento anual com projetos dos alunos de Desenvolvimento de Sistemas<br>
-                            sobre temas tecnológicos.
-                        </p>
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 50%, #1e40af 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-                        <div class="hero-buttons">
-                            <a href="https://formulario-setec.vercel.app/" target="_blank">
-                                <button class="btn-primary large">
-                                    Garantir Vaga
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </a>
-                            <button class="btn-outline large">Saiba Mais</button>
-                        </div>
-                    </div>
+.loading-content {
+  text-align: center;
+}
 
-                    <!-- Updated robot image to Design sem nome (2).png and increased size -->
-                    <div class="hero-image">
-                        <img src="Design sem nome (2).png" alt="Robot AI" class="robot-image" style="width: 500px; height: auto;">
-                    </div>
-                </div>
-            </div>
+.loading-logo {
+  margin-bottom: 2rem;
+  animation: logoAnimation 1s ease-out;
+}
 
-            <!-- Scroll indicator -->
-            <div class="scroll-indicator">
-                <div class="scroll-mouse">
-                    <div class="scroll-wheel"></div>
-                </div>
-            </div>
-        </section>
+.logo-circle {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
 
-        <!-- Sobre o SETEC 2025 -->
-        <section id="sobre" class="about-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Sobre o SETEC 2025</h2>
-                    <p>Uma semana dedicada às tecnologias que estão moldando o futuro</p>
-                </div>
+.logo-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1e3a8a;
+}
 
-                <div class="about-grid">
-                    <div class="about-card mission">
-                        <div class="card-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Nossa Missão</h3>
-                            <p>O SETEC é um evento anual promovido pelo Colégio Estadual Barbosa Ferraz, organizado pelos alunos do curso de Desenvolvimento de Sistemas. A Semana da Tecnologia tem como objetivo principal incentivar a interação entre estudantes pelas áreas tecnológicas, promovendo o aprendizado prático e a troca de conhecimentos.</p>
-                        </div>
-                    </div>
+.loading-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
 
-                    <div class="about-card ai">
-                        <div class="card-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Inteligência Artificial</h3>
-                            <p>A Inteligência Artificial (IA) é um campo da ciência que cria sistemas capazes de simular a inteligência humana para executar tarefas como aprender, tomar decisões e resolver problemas. Uma de suas principais áreas é o Machine Learning, que permite que máquinas aprendam automaticamente a partir de dados, melhorando seu desempenho com o tempo.
-                                Dentro do Machine Learning, o Deep Learning utiliza redes neurais profundas para analisar grandes volumes de informações, possibilitando avanços em reconhecimento de voz, imagens e linguagem.</p>
-                        </div>
-                    </div>
+.loading-subtitle {
+  font-size: 1.5rem;
+  color: #bfdbfe;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
 
-                    <div class="about-card development">
-                        <div class="card-icon">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Desenvolvimento</h3>
-                            <p>React, Next.js, Python e Node.js
-                                React é uma biblioteca JavaScript amplamente usada para construir interfaces de usuário dinâmicas e responsivas, especialmente em aplicações web. Ela permite criar componentes reutilizáveis que facilitam o desenvolvimento e a manutenção do código.                            
-                                Já o Next.js é um framework baseado em React que oferece funcionalidades avançadas, como renderização do lado servidor (SSR) e geração estática de páginas, melhorando o desempenho e o SEO das aplicações web.</p>
-                        </div>
-                    </div>
+.loading-bar-container {
+  width: 256px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  margin: 0 auto 1.5rem;
+  overflow: hidden;
+  animation: fadeInUp 0.8s ease-out 1s both;
+}
 
-                    <div class="about-card innovation">
-                        <div class="card-icon">
-                            <i class="fas fa-sparkles"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Inovação</h3>
-                            <p>Startups, Empreendedorismo e Tecnologias Emergentes
-                                As startups são empresas inovadoras e em estágio inicial que buscam desenvolver soluções escaláveis e disruptivas para problemas atuais. Elas são o motor do empreendedorismo, um movimento que incentiva a criação de novos negócios, a inovação constante e a geração de valor para o mercado.
-                                No contexto atual, as startups se beneficiam cada vez mais das tecnologias emergentes, como inteligência artificial, blockchain, Internet das Coisas (IoT) e computação em nuvem.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+.loading-bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
+  border-radius: 9999px;
+  animation: loadingProgress 2s ease-in-out 1s both;
+  transform: translateX(-100%);
+}
 
-        <!-- SETECs Passadas -->
-        <section id="jornada" class="past-events">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Nossa Jornada</h2>
-                    <p>Relembre os momentos marcantes das edições anteriores da SETEC e veja como cada ano trouxe inovações e conexões únicas.</p>
-                </div>
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  animation: fadeInUp 0.8s ease-out 1.5s both;
+}
 
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-header purple-gradient">
-                            <div class="event-year">2024</div>
-                            <div class="event-logo">SETEC</div>
-                        </div>
-                        <!-- Espaço para imagem 2024 -->
-                        <div class="event-image">
-                            <!-- Insira a imagem do evento 2024 aqui -->
-                            <img src="fot2.jpg" alt="setec24" />
-                        </div>
-                        <div class="event-content">
-                            <h3>Inteligência Artificial</h3>
-                            <p>Exploramos o futuro da IA e suas aplicações práticas no mercado de trabalho.</p>
-                            <div class="participants">
-                                <i class="fas fa-users"></i>
-                                <span>520+ participantes</span>
-                            </div>
-                        </div>
-                    </div>
+.dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: dotPulse 1s infinite;
+}
 
-                    <div class="event-card">
-                        <div class="event-header cyan-gradient">
-                            <div class="event-year">2023</div>
-                            <div class="event-logo">SETEC</div>
-                        </div>
-                        <!-- Espaço para imagem 2023 -->
-                        <div class="event-image">
-                            <!-- Insira a imagem do evento 2023 aqui -->
-                            <img src="fot3.jpg" alt="setec23" />
-                        </div>
-                        <div class="event-content">
-                            <h3>Desenvolvimento Web</h3>
-                            <p>Uma imersão completa nas tecnologias mais modernas do desenvolvimento web.</p>
-                            <div class="participants">
-                                <i class="fas fa-users"></i>
-                                <span>450+ participantes</span>
-                            </div>
-                        </div>
-                    </div>
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
 
-                    <div class="event-card">
-                        <div class="event-header pink-gradient">
-                            <div class="event-year">2022</div>
-                            <div class="event-logo">SETEC</div>
-                        </div>
-                        <!-- Espaço para imagem 2022 -->
-                        <div class="event-image">
-                            <!-- Insira a imagem do evento 2022 aqui -->
-                            <img src="fot4.jpg" alt="setec22" />
-                        </div>
-                        <div class="event-content">
-                            <h3>Transformação Digital</h3>
-                            <p>Como a tecnologia está revolucionando todos os setores da economia.</p>
-                            <div class="participants">
-                                <i class="fas fa-users"></i>
-                                <span>380+ participantes</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
-        <!-- Convite -->
-        <section class="invitation">
-            <div class="container">
-                <div class="invitation-content">
-                    <h2>Seja Parte da Revolução</h2>
-                    <p>A SETEC 2025 promete ser a maior e mais inovadora edição de todas. Conecte-se com profissionais, aprenda com especialistas e descubra as tecnologias que estão moldando o futuro.</p>
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+}
 
-                    <div class="features-grid">
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-brain"></i>
-                            </div>
-                            <h3>IA & Machine Learning</h3>
-                            <p>Descubra o poder da Inteligência Artificial</p>
-                        </div>
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
 
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <h3>Desenvolvimento</h3>
-                            <p>Workshops práticos com tecnologias modernas</p>
-                        </div>
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <i class="fas fa-rocket"></i>
-                            </div>
-                            <h3>Inovação</h3>
-                            <p>Projetos que estão mudando o mundo</p>
-                        </div>
-                    </div>
+.header-logo {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
 
-                    <a href="https://formulario-setec.vercel.app/" target="_blank">
-                        <button class="btn-primary extra-large">
-                            Garanta Sua Vaga
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </section>
+.logo-text-section {
+  display: flex;
+  flex-direction: column;
+}
 
-        <!-- Formulário -->
-        <section id="inscricao" class="registration">
-            <div class="container">
-                <div class="registration-content">
-                    <h2>Pronto para Começar?</h2>
-                    <p>Não perca a oportunidade de fazer parte da SETEC 2025. As vagas são limitadas e as inscrições estão abertas!</p>
+.college-name {
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
 
-                    <div class="registration-card">
-                        <div class="card-content">
-                            <div class="card-text">
-                                <h3>Inscrições Abertas</h3>
-                                <p>Preencha o formulário e garanta sua participação</p>
-                            </div>
-                            <a href="https://formulario-setec.vercel.app/" target="_blank">
-                                <button class="btn-form">
-                                    Acessar Formulário
-                                    <i class="fas fa-external-link-alt"></i>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
+.event-name {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
 
-                    <div class="stats-grid">
-                        <div class="stat">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Tecnologia</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">3</div>
-                            <div class="stat-label">Dias de Evento</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">25+</div>
-                            <div class="stat-label">Palestrantes</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <p>© 2025 SETEC - Semana de Tecnologia • Colégio Estadual Barbosa Ferraz</p>
-            </div>
-        </footer>
-    </div>
+.nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.nav a:hover {
+  color: white;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #06b6d4;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  background: #0891b2;
+  transform: translateY(-2px);
+}
+
+.btn-primary.large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-primary.extra-large {
+  padding: 1.5rem 3rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: white;
+  color: #000;
+}
+
+.btn-outline.large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btn-form {
+  background: white;
+  color: #000;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-form:hover {
+  background: #f3f4f6;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #7c3aed 0%, #374151 50%, #000 100%);
+  z-index: 0;
+}
+
+/* Background effects for floating blur circles */
+.background-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.blur-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+
+.blur-1 {
+  top: 10%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+  animation: float 6s ease-in-out infinite;
+}
+
+.blur-2 {
+  bottom: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.blur-3 {
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, #ec4899, #7c3aed);
+  animation: float 7s ease-in-out infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  position: relative;
+  z-index: 10;
+  animation: fadeInUp 1s ease-out 0.5s both;
+  /* Adjusted padding to push text more to the left */
+  padding-left: 0;
+  padding-right: 2rem;
+}
+
+.hero-text {
+  flex: 1;
+  text-align: left;
+  position: relative;
+  z-index: 10;
+  /* Reduced max-width and adjusted positioning for better left alignment */
+  max-width: 550px;
+  padding-right: 2rem;
+}
+
+.hero-image {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.robot-image {
+  /* Increased robot size to better match prototype */
+  width: 650px;
+  height: 650px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
+}
+
+/* About Section */
+.about-section {
+  padding: 5rem 0;
+  background: #000;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-header h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: bold;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+.section-header p {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 1536px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background: rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.about-card:hover {
+  border-color: rgba(75, 85, 99, 0.6);
+  transform: translateY(-4px);
+}
+
+.about-card.mission:hover {
+  border-color: rgba(147, 51, 234, 0.5);
+}
+
+.about-card.ai:hover {
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+.about-card.development:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.about-card.innovation:hover {
+  border-color: rgba(236, 72, 153, 0.5);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.mission .card-icon {
+  background: #7c3aed;
+  color: white;
+}
+
+.ai .card-icon {
+  background: #06b6d4;
+  color: #000;
+}
+
+.development .card-icon {
+  background: #3b82f6;
+  color: white;
+}
+
+.innovation .card-icon {
+  background: #ec4899;
+  color: white;
+}
+
+.card-content h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.card-content p {
+  color: #9ca3af;
+  line-height: 1.6;
+}
+
+/* Past Events */
+.past-events {
+  padding: 5rem 0;
+  background: #111827;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.event-card {
+  background: rgba(31, 41, 55, 0.5);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  border-color: rgba(75, 85, 99, 0.6);
+  transform: scale(1.05);
+}
+
+.event-header {
+  height: 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.purple-gradient {
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+}
+
+.cyan-gradient {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6);
+}
+
+.pink-gradient {
+  background: linear-gradient(135deg, #ec4899, #7c3aed);
+}
+
+.event-logo {
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.event-year {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.event-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: #1f2937;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.event-content {
+  padding: 2rem;
+}
+
+.event-content h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.event-content p {
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+.participants {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #06b6d4;
+  font-weight: 600;
+}
+
+/* Invitation */
+.invitation {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #7c3aed 0%, #1e40af 50%, #06b6d4 100%);
+}
+
+.invitation-content {
+  text-align: center;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.invitation h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.invitation p {
+  font-size: 1.25rem;
+  color: #bfdbfe;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature-icon {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 1rem;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 2rem;
+  color: white;
+}
+
+.feature h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  color: #bfdbfe;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Registration */
+.registration {
+  padding: 5rem 0;
+  background: #000;
+}
+
+.registration-content {
+  text-align: center;
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.registration h2 {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.registration p {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  margin-bottom: 3rem;
+}
+
+.registration-card {
+  background: linear-gradient(90deg, #7c3aed, #3b82f6, #06b6d4);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+}
+
+.registration-card .card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.card-text h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.card-text p {
+  color: #bfdbfe;
+  margin: 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.stat:nth-child(1) .stat-number {
+  color: #06b6d4;
+}
+
+.stat:nth-child(2) .stat-number {
+  color: #7c3aed;
+}
+
+.stat:nth-child(3) .stat-number {
+  color: #ec4899;
+}
+
+.stat-label {
+  color: #9ca3af;
+}
+
+/* Footer */
+.footer {
+  background: #111827;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(75, 85, 99, 0.3);
+  text-align: center;
+}
+
+.footer p {
+  color: #9ca3af;
+}
+
+/* Animations */
+@keyframes logoAnimation {
+  from {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes loadingProgress {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dotPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) translateX(-50%);
+  }
+  40% {
+    transform: translateY(-10px) translateX(-50%);
+  }
+  60% {
+    transform: translateY(-5px) translateX(-50%);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    order: -1;
+  }
+
+  .robot-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-buttons button,
+  .hero-buttons a {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .registration-card .card-content {
+    flex-direction: column;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .registration-card .card-content {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .robot-image {
+    /* Adjusted tablet size proportionally */
+    width: 500px;
+    height: 500px;
+  }
+
+  .hero-content {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .registration-card .card-content {
+    flex-direction: row;
+  }
+}
+
+/* Scroll Animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s ease-out;
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
