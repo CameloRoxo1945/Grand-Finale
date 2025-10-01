@@ -445,9 +445,9 @@ body {
 }
 
 .robot-image {
-  /* Increased robot size to better match prototype */
-  width: 650px;
-  height: 650px;
+  /* Increased robot size slightly from 650px to 720px */
+  width: 720px;
+  height: 720px;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
 }
