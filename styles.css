@@ -376,6 +376,27 @@ body {
   /* Reduced max-width and adjusted positioning for better left alignment */
   max-width: 550px;
   padding-right: 2rem;
+  color: #ffffff;
+}
+
+.hero-text .badge {
+  color: #ffffff;
+}
+
+.hero-title {
+  color: #ffffff;
+}
+
+.hero-subtitle h2 {
+  color: #ffffff;
+}
+
+.hero-subtitle h3 {
+  color: #06b6d4;
+}
+
+.hero-description {
+  color: #ffffff;
 }
 
 .hero-image {
