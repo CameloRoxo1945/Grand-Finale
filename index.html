@@ -55,9 +55,11 @@
                     </div>
                     <nav class="nav">
                         <a href="#sobre">Sobre</a>
-                        <a href="#programacao">Programação</a>
+                        <a href="#jornada">Setecs passadas</a>
                         <a href="#inscricao">Inscrição</a>
-                        <button class="btn-primary">Inscreva-se</button>
+                        <a href="https://teste-da-setec-fomulario.vercel.app/" target="_blank">
+                            <button class="btn-primary">Inscreva-se</button>
+                        </a>
                     </nav>
                     <div class="mobile-menu-toggle">
                         <i class="fas fa-bars"></i>
@@ -68,6 +70,18 @@
 
         <!-- Hero Section -->
         <section class="hero">
+            <!-- Added Matrix background animation canvas -->
+            <div class="matrix-background">
+                <canvas id="matrixCanvas"></canvas>
+            </div>
+            
+            <!-- Added floating blur circles for background effect -->
+            <div class="background-effects">
+                <div class="blur-circle blur-1"></div>
+                <div class="blur-circle blur-2"></div>
+                <div class="blur-circle blur-3"></div>
+            </div>
+            
             <div class="hero-bg"></div>
             <div class="container">
                 <div class="hero-content">
@@ -90,10 +104,12 @@
                     </p>
 
                     <div class="hero-buttons">
-                        <button class="btn-primary large">
-                            Garantir Vaga
-                            <i class="fas fa-arrow-right"></i>
-                        </button>
+                        <a href="https://teste-da-setec-fomulario.vercel.app/" target="_blank">
+                            <button class="btn-primary large">
+                                Garantir Vaga
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </a>
                         <button class="btn-outline large">Saiba Mais</button>
                     </div>
                 </div>
@@ -164,78 +180,75 @@
             </div>
         </section>
 
-                <!-- SETECs Passadas -->
-<section class="past-events">
-    <div class="container">
-        <div class="section-header">
-            <h2>Nossa Jornada</h2>
-            <p>Relembre os momentos marcantes das edições anteriores da SETEC e veja como cada ano trouxe inovações e conexões únicas.</p>
-        </div>
+        <!-- SETECs Passadas -->
+        <section id="jornada" class="past-events">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Nossa Jornada</h2>
+                    <p>Relembre os momentos marcantes das edições anteriores da SETEC e veja como cada ano trouxe inovações e conexões únicas.</p>
+                </div>
 
-        <div class="events-grid">
-            <div class="event-card">
-                <div class="event-header purple-gradient">
-                    <div class="event-year">2024</div>
-                    <div class="event-logo">SETEC</div>
-                </div>
-                <!-- Espaço para imagem 2024 -->
-                <div class="event-image">
-                    <!-- Insira a imagem do evento 2024 aqui -->
-                    <img src="fot2.jpg" alt="setec24" />
-                </div>
-                <div class="event-content">
-                    <h3>Inteligência Artificial</h3>
-                    <p>Exploramos o futuro da IA e suas aplicações práticas no mercado de trabalho.</p>
-                    <div class="participants">
-                        <i class="fas fa-users"></i>
-                        <span>520+ participantes</span>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-header purple-gradient">
+                            <div class="event-year">2024</div>
+                            <div class="event-logo">SETEC</div>
+                        </div>
+                        <!-- Espaço para imagem 2024 -->
+                        <div class="event-image">
+                            <!-- Insira a imagem do evento 2024 aqui -->
+                            <img src="fot2.jpg" alt="setec24" />
+                        </div>
+                        <div class="event-content">
+                            <h3>Inteligência Artificial</h3>
+                            <p>Exploramos o futuro da IA e suas aplicações práticas no mercado de trabalho.</p>
+                            <div class="participants">
+                                <i class="fas fa-users"></i>
+                                <span>520+ participantes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-header cyan-gradient">
+                            <div class="event-year">2023</div>
+                            <div class="event-logo">SETEC</div>
+                        </div>
+                        <!-- Espaço para imagem 2023 -->
+                        <div class="event-image">
+                            <!-- Insira a imagem do evento 2023 aqui -->
+                            <img src="fot3.jpg" alt="setec23" />
+                        </div>
+                        <div class="event-content">
+                            <h3>Desenvolvimento Web</h3>
+                            <p>Uma imersão completa nas tecnologias mais modernas do desenvolvimento web.</p>
+                            <div class="participants">
+                                <i class="fas fa-users"></i>
+                                <span>450+ participantes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-header pink-gradient">
+                            <div class="event-year">2022</div>
+                            <div class="event-logo">SETEC</div>
+                        </div>
+                        <!-- Espaço para imagem 2022 -->
+                        <div class="event-image">
+                            <!-- Insira a imagem do evento 2022 aqui -->
+                            <img src="fot4.jpg" alt="setec22" />
+                        </div>
+                        <div class="event-content">
+                            <h3>Transformação Digital</h3>
+                            <p>Como a tecnologia está revolucionando todos os setores da economia.</p>
+                            <div class="participants">
+                                <i class="fas fa-users"></i>
+                                <span>380+ participantes</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-header cyan-gradient">
-                    <div class="event-year">2023</div>
-                    <div class="event-logo">SETEC</div>
-                </div>
-                <!-- Espaço para imagem 2023 -->
-                <div class="event-image">
-                    <!-- Insira a imagem do evento 2023 aqui -->
-                    <img src="fot3.jpg" alt="setec23" />
-                </div>
-                <div class="event-content">
-                    <h3>Desenvolvimento Web</h3>
-                    <p>Uma imersão completa nas tecnologias mais modernas do desenvolvimento web.</p>
-                    <div class="participants">
-                        <i class="fas fa-users"></i>
-                        <span>450+ participantes</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event-card">
-                <div class="event-header pink-gradient">
-                    <div class="event-year">2022</div>
-                    <div class="event-logo">SETEC</div>
-                </div>
-                <!-- Espaço para imagem 2022 -->
-                <div class="event-image">
-                    <!-- Insira a imagem do evento 2022 aqui -->
-                    <img src="fot4.jpg" alt="setec22" />
-                </div>
-                <div class="event-content">
-                    <h3>Transformação Digital</h3>
-                    <p>Como a tecnologia está revolucionando todos os setores da economia.</p>
-                    <div class="participants">
-                        <i class="fas fa-users"></i>
-                        <span>380+ participantes</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
             </div>
         </section>
 
@@ -272,10 +285,12 @@
                         </div>
                     </div>
 
-                    <button class="btn-primary extra-large">
-                        Garanta Sua Vaga
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
+                    <a href="https://teste-da-setec-fomulario.vercel.app/" target="_blank">
+                        <button class="btn-primary extra-large">
+                            Garanta Sua Vaga
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </a>
                 </div>
             </div>
         </section>
@@ -287,21 +302,20 @@
                     <h2>Pronto para Começar?</h2>
                     <p>Não perca a oportunidade de fazer parte da SETEC 2025. As vagas são limitadas e as inscrições estão abertas!</p>
 
-                   <div class="registration-card">
-              <div class="card-content">
-                  <div class="card-text">
-                     <h3>Inscrições Abertas</h3>
-                     <p>Preencha o formulário e garanta sua participação</p>
-                  </div>
-                     <a href="https://teste-da-setec-fomulario.vercel.app/" target="_blank">
-                     <button class="btn-form">
-                       Acessar Formulário
-                       <i class="fas fa-external-link-alt"></i>
-                     </button>
-                 </a>
-            </div>
-        </div>
-
+                    <div class="registration-card">
+                        <div class="card-content">
+                            <div class="card-text">
+                                <h3>Inscrições Abertas</h3>
+                                <p>Preencha o formulário e garanta sua participação</p>
+                            </div>
+                            <a href="https://teste-da-setec-fomulario.vercel.app/" target="_blank">
+                                <button class="btn-form">
+                                    Acessar Formulário
+                                    <i class="fas fa-external-link-alt"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
 
                     <div class="stats-grid">
                         <div class="stat">
