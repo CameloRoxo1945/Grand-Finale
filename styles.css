@@ -370,6 +370,7 @@ body {
   text-align: left;
   position: relative;
   z-index: 10;
+  max-width: 600px;
 }
 
 .hero-image {
@@ -377,11 +378,14 @@ body {
   position: relative;
   z-index: 10;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .robot-image {
-  width: 450px;
-  height: 450px;
+  width: 550px;
+  height: 550px;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
 }
@@ -404,6 +408,7 @@ body {
   color: white;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
+  line-height: 1;
 }
 
 .hero-subtitle h2 {
@@ -411,6 +416,7 @@ body {
   font-weight: 600;
   color: white;
   margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
 .hero-subtitle h3 {
@@ -421,13 +427,14 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-bottom: 2rem;
+  line-height: 1.1;
 }
 
 .hero-description {
   font-size: 1.25rem;
   color: #d1d5db;
   margin-bottom: 3rem;
-  line-height: 1.8;
+  line-height: 1.6;
 }
 
 .hero-buttons {
@@ -887,6 +894,7 @@ body {
 
   .hero-text {
     text-align: center;
+    max-width: 100%;
   }
 
   .hero-buttons {
@@ -898,8 +906,8 @@ body {
   }
 
   .robot-image {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
   }
 
   .hero-buttons {
@@ -954,8 +962,8 @@ body {
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .robot-image {
-    width: 350px;
-    height: 350px;
+    width: 450px;
+    height: 450px;
   }
 
   .hero-content {
