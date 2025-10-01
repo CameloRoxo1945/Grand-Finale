@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Inicializar animações e funcionalidades
 function initializeAnimations() {
+  initMatrixAnimation()
+
   // Smooth scrolling para links de navegação
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -81,19 +83,6 @@ function initializeAnimations() {
       nav.classList.toggle("active")
     })
   }
-
-  // Botões de ação
-  const inscricaoButtons = document.querySelectorAll(".btn-primary, .btn-form")
-  inscricaoButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      if (button.textContent.includes("Formulário") || button.textContent.includes("Vaga")) {
-        e.preventDefault()
-        // Aqui você pode adicionar o link real do formulário
-        alert("Redirecionando para o formulário de inscrição...")
-        // window.open('https://forms.google.com/seu-formulario', '_blank');
-      }
-    })
-  })
 
   // Animação de contadores (se necessário)
   function animateCounter(element, target, duration = 2000) {
@@ -183,6 +172,64 @@ function initializeAnimations() {
   // }
 
   console.log("🚀 SETEC 2025 - Site carregado com sucesso!")
+}
+
+function initMatrixAnimation() {
+  const canvas = document.getElementById("matrixCanvas")
+  if (!canvas) return
+
+  const ctx = canvas.getContext("2d")
+
+  // Set canvas size
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+
+  // Matrix characters
+  const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}".split("")
+
+  const fontSize = 16
+  const columns = canvas.width / fontSize
+
+  // Array of drops - one per column
+  const drops = []
+  for (let x = 0; x < columns; x++) {
+    drops[x] = 1
+  }
+
+  // Drawing the characters
+  function draw() {
+    // Black background with transparency for trail effect
+    ctx.fillStyle = "rgba(0, 0, 0, 0.04)"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+    ctx.fillStyle = "#0F0" // Green text
+    ctx.font = fontSize + "px monospace"
+
+    // Loop over drops
+    for (let i = 0; i < drops.length; i++) {
+      // Random character
+      const text = matrix[Math.floor(Math.random() * matrix.length)]
+      // Draw the character
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize)
+
+      // Reset drop to top randomly after it has crossed the screen
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0
+      }
+
+      // Increment Y coordinate
+      drops[i]++
+    }
+  }
+
+  // Start animation
+  const matrixInterval = setInterval(draw, 35)
+
+  // Resize canvas on window resize
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+  })
 }
 
 // Adicionar estilos CSS para mobile menu via JavaScript
