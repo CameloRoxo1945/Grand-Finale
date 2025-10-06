@@ -923,8 +923,9 @@ body {
   }
 
   .robot-image {
-    width: 220px;
-    height: 220px;
+    /* Reduced robot size to 140px for mobile */
+    width: 140px;
+    height: 140px;
   }
 
   .hero-buttons {
