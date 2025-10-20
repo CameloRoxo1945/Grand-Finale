@@ -915,8 +915,8 @@ body {
   }
 
   .hero-description {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left:10px;
+    padding-right: 10px;
     /* Added padding to description to match hero-text and prevent edge cutoff */
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -1046,8 +1046,8 @@ body {
   }
 
   .hero-description {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 1rem;
     margin-right: 20px;
         margin-left: 20px;
