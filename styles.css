@@ -915,14 +915,14 @@ body {
   }
 
   .hero-description {
-    padding-left:10px;
-    padding-right: 10px;
+    padding-left:5%;
+    padding-right: 5%;
     /* Added padding to description to match hero-text and prevent edge cutoff */
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
   }
 
   .hero-buttons {
@@ -1046,11 +1046,11 @@ body {
   }
 
   .hero-description {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
     font-size: 1rem;
-    margin-right: 20px;
-        margin-left: 20px;
+    margin-right: 5%;
+        margin-left: 5%;
   }
 
   .hero-title {
