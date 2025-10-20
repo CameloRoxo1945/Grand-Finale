@@ -905,13 +905,24 @@ body {
   .hero-text {
     text-align: center;
     max-width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    /* Added width and word-wrap to ensure text stays within bounds */
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
   }
 
   .hero-description {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    /* Ensure description text wraps properly and stays visible */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-buttons {
