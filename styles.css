@@ -1041,12 +1041,16 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 0.95rem;
+    margin-right: 20px;
+        margin-left: 20px;
   }
 
   .hero-description {
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1rem;
+    margin-right: 20px;
+        margin-left: 20px;
   }
 
   .hero-title {
