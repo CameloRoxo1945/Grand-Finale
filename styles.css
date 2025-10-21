@@ -412,6 +412,7 @@ body {
 
 .hero-title {
   color: #ffffff;
+  padding-top: 10px;
   font-size: clamp(5rem, 10vw, 8rem);
   font-weight: bold;
   line-height: 1;
