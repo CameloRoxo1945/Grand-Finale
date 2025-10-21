@@ -423,7 +423,6 @@ body {
 
 .hero-subtitle h2 {
   color: #ffffff;
-  text-align: center;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 600;
   line-height: 1.2;
@@ -431,6 +430,7 @@ body {
 }
 
 .hero-subtitle h3 {
+  text-align: center;
   color: #06b6d4;
   font-size: 20px;
   font-weight: bold;
