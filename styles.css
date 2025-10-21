@@ -79,6 +79,7 @@ body {
 }
 
 .loading-title {
+  font-family: "Press Start 2P", system-ui;
   font-size: 4rem;
   font-weight: bold;
   color: white;
