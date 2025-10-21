@@ -415,6 +415,7 @@ body {
   font-size: clamp(5rem, 10vw, 8rem);
   font-weight: bold;
   line-height: 1;
+  font-family: "Press Start 2P", system-ui;
   margin-bottom: 1rem;
 }
 
