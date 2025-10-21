@@ -418,10 +418,12 @@ body {
   line-height: 1;
   font-family: "Press Start 2P", system-ui;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .hero-subtitle h2 {
   color: #ffffff;
+  text-align: center;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 600;
   line-height: 1.2;
