@@ -430,7 +430,7 @@ body {
 
 .hero-subtitle h3 {
   color: #06b6d4;
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: 40px;
   font-weight: bold;
   line-height: 1.2;
   margin-bottom: 1.5rem;
