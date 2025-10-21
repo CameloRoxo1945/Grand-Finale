@@ -412,7 +412,7 @@ body {
 
 .hero-title {
   color: #ffffff;
-  font-size: clamp(5rem, 10vw, 8rem);
+  font-size: 50%;
   font-weight: bold;
   line-height: 1;
   font-family: "Press Start 2P", system-ui;
