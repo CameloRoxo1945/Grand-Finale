@@ -431,6 +431,7 @@ body {
 }
 
 .hero-subtitle h3 {
+  padding-top: 10%;
   text-align: center;
   color: #06b6d4;
   font-size: 20px;
