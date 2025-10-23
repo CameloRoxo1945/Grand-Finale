@@ -440,6 +440,7 @@ body {
 }
 
 .hero-description {
+  text-align: center;
   padding-top:10%;
   color: #ffffff;
   font-size: 1.125rem;
