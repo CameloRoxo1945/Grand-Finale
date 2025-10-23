@@ -406,7 +406,7 @@ body {
 }
 
 .hero-text .badge {
-  padding-bottom:200px;
+  padding-bottom:25%;
   color: #ffffff;
   font-size: 1rem;
 }
@@ -440,6 +440,7 @@ body {
 }
 
 .hero-description {
+  padding-top:10%;
   color: #ffffff;
   font-size: 1.125rem;
   line-height: 1.6;
